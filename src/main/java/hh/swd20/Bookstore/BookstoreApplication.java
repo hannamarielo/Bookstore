@@ -38,11 +38,11 @@ public class BookstoreApplication {
 	public CommandLineRunner categoryDemo(CategoryRepository crepository) {
 		return (args) -> {
 			log.info("save a category");
-			crepository.save(new Category("123-45", "Scifi"));
-			crepository.save(new Category("56-789", "Drama"));
-			crepository.save(new Category("98-123", "Horror"));
+			crepository.save(new Category((long) 1, "Scifi"));
+			crepository.save(new Category((long) 2, "Drama"));
+			crepository.save(new Category((long) 3, "Horror"));
 
-			log.info("fetch all books");
+			log.info("fetch all categories");
 			for (Category category : crepository.findAll()) {
 				log.info(category.toString());
 			}

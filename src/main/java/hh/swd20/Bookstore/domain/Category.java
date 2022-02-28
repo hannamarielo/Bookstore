@@ -10,10 +10,10 @@ public class Category {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private String categoryid;
+	private Long categoryid;
 	private String categoryname;
 
-	public Category(String categoryid, String categoryname) {
+	public Category(Long categoryid, String categoryname) {
 		super();
 		this.categoryid = categoryid;
 		this.categoryname = categoryname;
@@ -25,7 +25,7 @@ public class Category {
 		this.categoryname = null;
 	}
 
-	public String getCategoryid() {
+	public Long getCategoryid() {
 		return categoryid;
 	}
 
@@ -33,7 +33,7 @@ public class Category {
 		return categoryname;
 	}
 
-	public void setCategoryid(String categoryid) {
+	public void setCategoryid(Long categoryid) {
 		this.categoryid = categoryid;
 	}
 
