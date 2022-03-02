@@ -21,30 +21,24 @@ public class BookstoreApplication {
 	}
 
 	@Bean
-	public CommandLineRunner bookDemo(BookRepository repository) {
+	public CommandLineRunner bookDemo(BookRepository repository, CategoryRepository crepository) {
 		return (args) -> {
 			log.info("save a couple of books");
-			repository.save(new Book("Muumipappa ja meri", "Tove Jansson", 1965, "1234-56-78-91", 20));
-			repository.save(new Book("Muumilaakson marraskuu", "Tove Jansson", 1970, "9564-17-15-16", 25));
-
+			
+			Category children = new Category("Children");
+			crepository.save(children);
+			Category non_fiction = new Category("Non-fiction");
+			crepository.save(non_fiction);
+			Category humor = new Category("Humor");
+			crepository.save(humor);
+			
+			repository.save(new Book("Muumipappa ja meri", "Tove Jansson", 1965, "1234567890123", (float) 22.35 , children));
+			repository.save(new Book("Korkeintaan vähän väsynyt", "Eeva Kolu", 2020, "9789512419562", (float) 25.99 , non_fiction));
+			repository.save(new Book("Pintaremontti", "Miika Nousiainen", 2020, "0987654321098", (float) 10.99 , humor));
+			
 			log.info("fetch all books");
 			for (Book book : repository.findAll()) {
 				log.info(book.toString());
-			}
-		};
-	}
-
-	@Bean
-	public CommandLineRunner categoryDemo(CategoryRepository crepository) {
-		return (args) -> {
-			log.info("save a category");
-			crepository.save(new Category((long) 1, "Scifi"));
-			crepository.save(new Category((long) 2, "Drama"));
-			crepository.save(new Category((long) 3, "Horror"));
-
-			log.info("fetch all categories");
-			for (Category category : crepository.findAll()) {
-				log.info(category.toString());
 			}
 		};
 	}
