@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,7 @@ import hh.swd20.Bookstore.domain.Book;
 import hh.swd20.Bookstore.domain.BookRepository;
 import hh.swd20.Bookstore.domain.CategoryRepository;
 
+@CrossOrigin
 @Controller
 public class BookstoreController {
 	@Autowired
@@ -57,7 +59,7 @@ public class BookstoreController {
 	}
 	
     @RequestMapping(value="/books", method = RequestMethod.GET)
-    public @ResponseBody List<Book> getBookRest() {	
+    public @ResponseBody List<Book> getBooksRest() {	
         return (List<Book>) repository.findAll();
     }    
 
